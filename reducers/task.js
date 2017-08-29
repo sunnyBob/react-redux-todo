@@ -26,9 +26,11 @@ module.exports = (state = [], action) => {
       return newState2
     case TASK_DEL_MANY:
       let newState3  = state
-      newState3.map((item, index) => {
-        item.isChoosed && newState3.splice(index,1)
-      })
+      for(let i = 0, l = newState3.length; i < l; i++) {
+        newState3[i].isChoosed && newState3.splice(i, 1)
+        l --
+        i --
+      }
       return newState3
     default:
       return state
